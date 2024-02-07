@@ -46,6 +46,11 @@
     // {:else} 
     //   // let fun1 = flipAvail();
     // {/if}
+    let eventTitle = ''; // Variable to store the event title
+    let eventColor = 'red'; // Default event color
+
+    const colors = ['red', 'blue', 'green']; // Available colors for the event
+
 
     const ec = new EventCalendar(document.getElementById('ec'), {
       view: 'timeGridWeek',
@@ -62,7 +67,18 @@
       },
       dayMaxEvents: true,
       nowIndicator: true,
-      selectable: true
+      selectable: true,
+      select: function(info) { // Event handler for date range selection
+        const title = prompt('Enter event title:'); // Prompt the user to enter a title for the event
+        if (title) { // If a title is provided
+          ec.addEvent({ // Add the new event to the calendar
+            title: title,
+            start: info.startStr,
+            end: info.endStr
+          });
+        }
+        ec.unselect(); // Clear the current selection
+      }
     });
   
     function createEvents() {
@@ -109,7 +125,10 @@
       let norm = Math.floor(Math.abs(num));
       return (norm < 10 ? '0' : '') + norm;
     }
+
+    
   </script>
+  <p>Test</p>
 </main>
 
 <style>
@@ -122,4 +141,5 @@
   .logo:hover {
     filter: drop-shadow(0 0 2em #646cffaa);
   }
+  
 </style>
