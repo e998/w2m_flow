@@ -22,8 +22,11 @@
   <p>
     <!--
       Dropdown question to input level of flexibility. 
-      Default is set to Flexible, but we would change this in a future prototype.
-      A future prototype would only include the "Completely Inflexible" and "Somewhat Flexible" options
+      Default is set to Flexible, but we would change this to default to Completely Inflexible in a future prototype.
+      A future prototype would only include the "Completely Inflexible" and "Somewhat Flexible" options, collapsing the
+      Empty and Flexible states into the single Empty state.
+      The tiers are represented through luminosity differences (hence the grayscale colors) because of accessibility concerns 
+      we discuss in the write-up.
     -->
     <label for="eventColor">Flexibility Level:</label>
       <select id="eventColor">
@@ -42,14 +45,12 @@
   <Switch bind:value={sliderValue} label="Show {sliderValue}" fontSize={18} design="slider"/>
   <br>
   <main class="row">
-    
-  
     <div id="ec" class="col"></div>
   </main>
 
   <script type="text/javascript">
 
-    //Calendar that is shown on the prottype
+    // Calendar that is shown in the prototype
     const ec = new EventCalendar(document.getElementById('ec'), {
       view: 'timeGridWeek',
       headerToolbar: {
@@ -81,7 +82,7 @@
       }
     });
   
-    //Used to set the days of the calendar
+    // Used to set the days of the calendar
     function createEvents() {
       let days = [];
       for (let i = 0; i < 7; ++i) {
@@ -97,12 +98,12 @@
       let norm = Math.floor(Math.abs(num));
       return (norm < 10 ? '0' : '') + norm;
     }
-
-    
   </script>
   
 </main>
 
+<!-- Styling for the Flow logo, which opens the calendar in a new tab when it is clicked. -->
+<!-- The logo was made through with LogoMaker: https://www.logomaker.com/get-started?utm_source=google_search&utm_campaign=logomaker_us_can&utm_medium=cpc&utm_term=logomaker_brandterms&gad_source=1&gclid=CjwKCAiAt5euBhB9EiwAdkXWO20T5SIYPp5LRzCkCCldE5htvhB-r1Hb2Oefzqw7gNzLm2kKd6BwSRoCCREQAvD_BwE -->
 <style>
   .logo {
     height: 6em;
@@ -113,5 +114,4 @@
   .logo:hover {
     filter: drop-shadow(0 0 2em #646cffaa);
   }
-  
 </style>
